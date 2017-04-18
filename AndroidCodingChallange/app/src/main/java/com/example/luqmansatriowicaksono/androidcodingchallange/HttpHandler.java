@@ -109,7 +109,7 @@ public class HttpHandler {
 
             for (int i = 0; i < SimpsonsCharactersArray.length(); i++) {
 
-                // Get a single SimpsonsCharacter at position i within the list of earthquakes
+                // Get a single SimpsonsCharacter at position i within the list of SimpsonsCharacters
                 JSONObject currentCharacter = SimpsonsCharactersArray.getJSONObject(i);
 
 
