@@ -23,21 +23,23 @@ public class MainActivity extends AppCompatActivity {
 
         sAdapter = new SimpsonsCharacterAdapter(this, new ArrayList<SimpsonsCharacter>());
 
-        SimpsonsListView.setAdapter(sAdapter);
+        SimpsonsAsyncTask task = new SimpsonsAsyncTask();
+        task.execute(SimpsonsURL);
 
-        // SimpsonsAsyncTask task = new SimpsonsAsnyctask();
-        // task.execute(SimpsonsUL);
+        SimpsonsListView.setAdapter(sAdapter);
     }
 
 
     private class SimpsonsAsyncTask extends AsyncTask<String, Void, List<SimpsonsCharacter>>{
 
         @Override
-        protected List<SimpsonsCharacter> doInBackground(String... params) {
+        protected List<SimpsonsCharacter> doInBackground(String... urls) {
             /* In this method the app will extract the JsonObject from the given URL and put it in a list.
             For overview purpose -> in a different class
              */
-            return null;
+
+            List<SimpsonsCharacter> result = HttpHandler.fetchSimpsonsData(urls[0]);
+            return result;
         }
 
         @Override
@@ -46,7 +48,10 @@ public class MainActivity extends AppCompatActivity {
             The onPostExecute method is needed because in the
             doInBackground method the UI cant be touched.(Different Thread)
              */
+
             sAdapter.addAll(result);
+
+
         }
     }
 
