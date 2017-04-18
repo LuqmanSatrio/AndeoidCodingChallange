@@ -45,10 +45,11 @@ public class SimpsonsCharacterAdapter  extends ArrayAdapter<SimpsonsCharacter>{
             TextView Nachname = (TextView)listItemView.findViewById(R.id.lastname);
             Nachname.setText(currentsimpsonCharacter.getLastName());
 
+            //using Picasso to extract the picture from the URL
             ImageView pic = (ImageView)listItemView.findViewById(R.id.list_item_icon);
             Picasso.with(c).load(currentsimpsonCharacter.getImg()).into(pic);
 
             return listItemView;
         }
     }
-}
+
